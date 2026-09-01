@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Ghost Apex — Products</title>
+<title>Ghost Apex — Ghost Jitter</title>
 <link rel="icon" type="image/png" href="images/logo.png">
 <link rel="shortcut icon" type="image/png" href="images/logo.png">
 <link rel="apple-touch-icon" href="images/logo.png">
@@ -10,16 +10,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!--
+  SellAuth checkout embed.
+  Verify this exact script tag against your own dashboard's snippet:
+  SellAuth Dashboard -> your shop -> the product -> "Embed" / "Share" tab.
+  SellAuth generates the snippet with your real shop already filled in —
+  if the script URL or data-attribute names below differ from what your
+  dashboard shows, use YOUR dashboard's version instead of this one.
+-->
+<script src="https://sellauth.com/js/embed.js" async></script>
 <style>
   :root{
     --bg: #060608;
-    --bg-soft: #0c0c10;
     --card: #0e0e13;
     --white: #f6f5f9;
     --grey: #918dae;
     --violet: #8b5cf6;
     --violet-light: #a78bfa;
-    --violet-dark: #5b21b6;
     --line: rgba(255,255,255,0.08);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -30,7 +37,7 @@
     min-height:100vh;
     overflow-x:hidden;
   }
-  /* fond photo choisi pour cette page (neon cyberpunk, pleine lune) */
+  /* fond photo choisi pour cette page (guerrier a la lame violette) */
   /* fond violet profond, sans photo : degrades atmospheriques + etoiles + diamants */
   body::before{
     content:"";
@@ -146,439 +153,167 @@
   }
 
   nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:22px 64px;
-    border-bottom:1px solid var(--line);
-    position:relative;
-    z-index:2;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 64px; border-bottom:1px solid var(--line);
+    position:relative; z-index:2;
   }
-  .logo{
-    display:flex;
-    align-items:center;
-    gap:11px;
-    font-family:'Outfit', sans-serif;
-    font-size:19px;
-    font-weight:600;
-    letter-spacing:0.2px;
-  
+  .logo{display:flex; align-items:center; gap:11px; font-family:'Outfit', sans-serif; font-size:19px; font-weight:600;
     color:var(--white);
   }
-  .logo-icon{
-    width:36px;height:36px;
-    border-radius:50%;
-    object-fit:cover;
-    box-shadow:0 0 0 1px rgba(139,92,246,0.5), 0 0 18px rgba(139,92,246,0.45);
-  }
+  .logo-icon{width:36px;height:36px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(139,92,246,0.5), 0 0 18px rgba(139,92,246,0.45);}
   .logo span{color:var(--violet-light); text-shadow:0 0 18px rgba(139,92,246,0.5);}
-
   .nav-links{display:flex; gap:38px; list-style:none;}
   .nav-links a{color:var(--grey); text-decoration:none; font-size:14.5px; font-weight:500; font-family:'Outfit', sans-serif; transition:color .2s;}
   .nav-links a.active, .nav-links a:hover{color:var(--white);}
   .nav-links a.active{color:var(--violet-light); text-shadow:0 0 14px rgba(139,92,246,0.6);}
-
   .discord-btn{
-    display:flex;
-    align-items:center;
-    gap:9px;
+    display:flex; align-items:center; gap:9px;
     background:linear-gradient(135deg, #7c5cf0, #5b21b6);
-    color:var(--white);
-    padding:11px 22px;
-    border-radius:10px;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:600;
+    color:var(--white); padding:11px 22px; border-radius:10px;
+    text-decoration:none; font-size:14px; font-weight:600;
     box-shadow:0 4px 20px rgba(124,92,240,0.35), inset 0 1px 0 rgba(255,255,255,0.15), 0 0 22px rgba(139,92,246,0.35);
     border:1px solid rgba(167,139,250,0.4);
     transition:transform .18s ease, box-shadow .18s ease;
   }
-  .discord-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 28px rgba(124,92,240,0.5), inset 0 1px 0 rgba(255,255,255,0.2), 0 0 38px rgba(139,92,246,0.55);
-  }
+  .discord-btn:hover{transform:translateY(-2px); box-shadow:0 8px 28px rgba(124,92,240,0.5), 0 0 38px rgba(139,92,246,0.55);}
   .discord-icon-face{ width:auto; height:29px; flex-shrink:0; }
 
 
-  main{
-    position:relative;
-    z-index:1;
-    max-width:1200px;
-    margin:0 auto;
-    padding:96px 40px 130px;
-  }
+  main{position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:50px 40px 120px;}
 
-  .store-header{text-align:center; margin-bottom:70px;}
-  .badge{
-    display:inline-block;
-    border:1px solid rgba(139,92,246,0.4);
-    color:var(--violet-light);
-    background:rgba(139,92,246,0.08);
-    padding:8px 18px;
-    border-radius:20px;
-    font-size:12px;
-    letter-spacing:1.5px;
-    font-weight:600;
-    margin-bottom:24px;
-    text-shadow:0 0 16px rgba(139,92,246,0.6);
-    box-shadow:0 0 24px rgba(139,92,246,0.15);
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px;
+    color:var(--grey); text-decoration:none; font-size:14px; font-weight:500;
+    margin-bottom:36px; transition:color .2s;
   }
-  h1{
-    font-family:'Outfit', sans-serif;
-    font-size:46px;
-    font-weight:700;
-    margin-bottom:18px;
-    letter-spacing:-0.5px;
-  
-    color:var(--white);
-  }
-  h1 .grad, h2 .grad{
-    background:linear-gradient(90deg,var(--violet-light),#8b5cf6);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    filter:drop-shadow(0 0 26px rgba(139,92,246,0.45));
-  }
-  .store-header p{color:var(--grey); font-size:16px;}
+  .back-link:hover{color:var(--white);}
 
-  .grid{
+  .product-top{
     display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:30px;
-    max-width:840px;
-    margin:0 auto;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    margin-bottom:90px;
   }
 
-  .card{
-    background:var(--card);
-    border:1px solid var(--line);
+  .gallery-main{
     border-radius:16px;
     overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-    color:inherit;
-    text-decoration:none;
-    transition:transform .2s, border-color .2s, box-shadow .2s;
+    border:1px solid var(--line);
+    background:var(--card);
+    height:460px;
   }
-  .card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(139,92,246,0.5);
-    box-shadow:0 20px 45px rgba(0,0,0,0.4), 0 0 40px rgba(139,92,246,0.18);
-  }
+  .gallery-main img{width:100%; height:100%; object-fit:cover; object-position:center 15%;}
 
-  .badge-best{
-    position:absolute;
-    top:16px; left:16px;
-    background:linear-gradient(135deg,#7c5cf0,#5b21b6);
-    color:var(--white);
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:0.5px;
-    padding:7px 14px;
-    border-radius:20px;
-    z-index:2;
-    box-shadow:0 4px 14px rgba(124,92,240,0.4);
+  .tags{display:flex; align-items:center; gap:18px; margin-bottom:20px;}
+  .tag{
+    display:flex; align-items:center; gap:6px;
+    font-size:13px; font-weight:600; color:var(--violet-light);
+    text-shadow:0 0 12px rgba(139,92,246,0.55);
   }
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--violet-light); box-shadow:0 0 8px var(--violet-light);}
 
-  .card-art{
-    height:270px;
-    background:linear-gradient(160deg, #1a1a20, #0a0a0d);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    border-bottom:1px solid var(--line);
-    overflow:hidden;
-  }
-  .card-art img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center 20%;
-  }
-  .card-art img.card-art-jitter{ object-position:58% 25%; }
-
-  .card-body{padding:26px 26px 30px; text-align:center;}
-  .card-body h3{
-    font-family:'Outfit', sans-serif;
-    font-size:19px;
-    font-weight:600;
-    margin-bottom:10px;
+  h1{font-family:'Outfit', sans-serif; font-size:34px; font-weight:700; margin-bottom:18px; letter-spacing:-0.3px;
     color:var(--white);
   }
-  .card-body p{color:var(--grey); font-size:14px; line-height:1.55; margin-bottom:20px; min-height:42px;}
-  .price{font-size:23px; font-weight:700; color:var(--violet-light); margin-bottom:20px; font-family:'Outfit', sans-serif;}
-  .price span{font-size:13px; color:var(--grey); font-weight:400; font-family:'Outfit', sans-serif;}
+  .desc{color:var(--grey); font-size:15px; line-height:1.7; margin-bottom:32px;}
 
-  .btn-details{
-    display:block;
-    width:100%;
-    padding:14px;
-    border-radius:10px;
-    background:linear-gradient(135deg, #7c5cf0, #5b21b6);
+  .platforms-box{
+    display:flex; align-items:center; justify-content:space-between;
+    border:1px solid var(--line); border-radius:12px;
+    padding:16px 20px; margin-bottom:26px;
+    background:var(--card);
+  }
+  .platforms-box .label{display:flex; align-items:center; gap:9px; font-size:14px; font-weight:600;
     color:var(--white);
-    text-decoration:none;
-    font-weight:600;
-    font-size:14px;
-    text-align:center;
-    box-shadow:0 4px 16px rgba(124,92,240,0.3), 0 0 20px rgba(139,92,246,0.3);
+  }
+  .label-check{
+    display:flex; align-items:center; justify-content:center;
+    width:22px; height:22px;
+    border-radius:6px;
+    background:rgba(139,92,246,0.15);
+    border:1px solid rgba(139,92,246,0.55);
+    color:var(--violet-light);
+    font-size:13px;
+    flex-shrink:0;
+    box-shadow:0 0 10px rgba(139,92,246,0.35);
+  }
+  .platforms-box .icons{display:flex; gap:12px; align-items:center;}
+  .platform-icon{
+    height:54px; width:54px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 10px rgba(167,139,250,0.85)) drop-shadow(0 0 22px rgba(139,92,246,0.55));
+    transition:transform .2s ease, filter .2s ease;
+  }
+  .platform-icon:hover{
+    transform:translateY(-2px) scale(1.08);
+    filter:drop-shadow(0 0 14px rgba(216,180,254,0.95)) drop-shadow(0 0 30px rgba(139,92,246,0.75));
+  }
+
+  .pricing{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:28px;}
+  .price-card{
+    border:1px solid var(--line); border-radius:12px;
+    padding:18px 20px; background:var(--card);
+    cursor:pointer; transition:border-color .2s;
+  }
+  .price-card.selected{border-color:var(--violet-light); box-shadow:0 0 0 1px var(--violet-light), 0 0 24px rgba(139,92,246,0.35);}
+  .price-card .duration{font-size:13px; color:var(--grey); margin-bottom:8px;}
+  .price-card .amount{font-family:'Outfit', sans-serif; font-size:26px; font-weight:700; color:var(--violet-light); text-shadow:0 0 18px rgba(139,92,246,0.5);}
+
+  .cta-row{display:flex; gap:14px;}
+  .btn{
+    flex:1; padding:15px; border-radius:10px; text-align:center;
+    font-weight:600; font-size:15px; text-decoration:none;
     transition:transform .15s, box-shadow .15s;
   }
-  .card:hover .btn-details{transform:translateY(-2px); box-shadow:0 8px 22px rgba(124,92,240,0.45), 0 0 32px rgba(139,92,246,0.5);}
-
-  /* ============ WHY US ============ */
-  .why-section{margin-top:130px;}
-  .why-header{text-align:center; margin-bottom:44px;}
-  .why-header h2{
-    font-family:'Outfit', sans-serif;
-    font-size:34px;
-    font-weight:800;
-    margin-bottom:12px;
-    letter-spacing:-0.4px;
-  
-    color:var(--white);
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{
+    background:linear-gradient(135deg, #7c5cf0, #5b21b6); color:var(--white);
+    box-shadow:0 4px 20px rgba(124,92,240,0.35), 0 0 22px rgba(139,92,246,0.35);
   }
-  .why-header p{color:var(--grey); font-size:15.5px;}
+  .btn-primary:hover{box-shadow:0 8px 28px rgba(124,92,240,0.5), 0 0 38px rgba(139,92,246,0.55);}
+  .btn-secondary{
+    background:transparent; color:var(--white);
+    border:1px solid var(--line);
+  }
+  .btn-secondary:hover{border-color:var(--violet-light); color:var(--violet-light); box-shadow:0 0 26px rgba(139,92,246,0.35);}
 
-  .why-grid{
+  .features{
     display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:20px;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
   }
-  .why-card{
-    position:relative;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:28px 26px;
-    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease, background .25s ease;
+  .feature-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px;
   }
-  .why-card::before{
-    content:"";
-    position:absolute;
-    left:0; top:20px; bottom:20px;
-    width:3px;
-    border-radius:3px;
-    background:rgba(139,92,246,0.25);
-    transition:background .25s ease, box-shadow .25s ease;
-  }
-  .why-card:hover{
-    transform:translateY(-4px);
-    border-color:rgba(139,92,246,0.5);
-    box-shadow:0 16px 36px rgba(0,0,0,0.35), 0 0 30px rgba(139,92,246,0.18);
-    background:linear-gradient(180deg, rgba(139,92,246,0.10), var(--card) 65%);
-  }
-  .why-card:hover::before{
-    background:var(--violet-light);
-    box-shadow:0 0 12px var(--violet-light);
-  }
-  .why-icon{
-    width:44px; height:44px;
-    border-radius:12px;
-    display:flex; align-items:center; justify-content:center;
-    background:rgba(139,92,246,0.12);
-    border:1px solid rgba(139,92,246,0.3);
-    color:var(--violet-light);
-    font-size:19px;
-    font-weight:700;
-    margin-bottom:18px;
-    box-shadow:0 0 14px rgba(139,92,246,0.25);
-    transition:box-shadow .25s ease, transform .25s ease;
-  }
-  .why-card:hover .why-icon{
-    box-shadow:0 0 24px rgba(139,92,246,0.55);
-    transform:scale(1.06);
-  }
-  .why-card h3{
-    font-family:'Outfit', sans-serif;
-    font-size:16.5px;
-    font-weight:700;
-    margin-bottom:8px;
+  .feature-card h4{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Outfit', sans-serif; font-size:15px; font-weight:600;
+    margin-bottom:16px;
   
     color:var(--white);
   }
-  .why-card p{color:var(--grey); font-size:13.5px; line-height:1.6;}
-
-  /* ============ REVIEWS ============ */
-  .reviews-section{margin-top:130px;}
-  .reviews-header{text-align:center; margin-bottom:32px;}
-  .reviews-header .badge{margin-bottom:18px;}
-  .reviews-header h2{
-    font-family:'Outfit', sans-serif;
-    font-size:34px;
-    font-weight:800;
-    margin-bottom:12px;
-    letter-spacing:-0.4px;
-  
-    color:var(--white);
+  .feature-card h4 .icon-dot{
+    width:26px; height:26px; border-radius:8px;
+    background:rgba(139,92,246,0.15); color:var(--violet-light);
+    display:flex; align-items:center; justify-content:center; font-size:13px;
+    text-shadow:0 0 10px rgba(139,92,246,0.7);
   }
-  .reviews-header p{color:var(--grey); font-size:15.5px;}
-
-  .reviews-cta{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    flex-wrap:wrap;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:20px 26px;
-    margin-bottom:36px;
+  .feature-card ul{list-style:none;}
+  .feature-card li{
+    font-size:13.5px; color:var(--grey); line-height:2;
+    padding-left:20px; position:relative;
   }
-  .reviews-cta-text{font-size:14.5px;}
-  .reviews-cta-text strong{display:block; font-size:16px; margin-bottom:4px;
-    color:var(--white);
-  }
-  .reviews-cta-text span{color:var(--grey);}
-  .reviews-cta .discord-btn{flex-shrink:0;}
-
-  .reviews-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
-    gap:18px;
+  .feature-card li::before{
+    content:"✓"; position:absolute; left:0; color:var(--violet-light); font-weight:700;
   }
 
-  .review-card{
-    position:relative;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:22px;
-    overflow:hidden;
-    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-  }
-  .review-card::before{
-    content:"";
-    position:absolute;
-    top:0; left:0; right:0;
-    height:2px;
-    background:linear-gradient(90deg, transparent, var(--violet-light), transparent);
-    opacity:0.7;
-  }
-  .review-card:hover{
-    transform:translateY(-4px);
-    border-color:rgba(139,92,246,0.45);
-    box-shadow:0 14px 32px rgba(0,0,0,0.35), 0 0 26px rgba(139,92,246,0.15);
-  }
-
-  .review-top{display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px;}
-  .stars{display:flex; gap:2px;}
-  .star{font-size:14px; color:rgba(255,255,255,0.15);}
-  .star.filled{color:var(--violet-light); text-shadow:0 0 8px rgba(139,92,246,0.65);}
-  .review-quote{
-    font-family:Georgia, serif;
-    font-size:26px;
-    line-height:1;
-    color:rgba(139,92,246,0.35);
-  }
-
-  .review-text{color:var(--white); font-size:15px; font-weight:600; line-height:1.5; margin-bottom:20px;}
-
-  .review-foot{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    padding-top:14px;
-    border-top:1px solid var(--line);
-    font-size:12.5px;
-    color:var(--grey);
-  }
-  .review-foot-icon{
-    width:20px; height:20px;
-    flex-shrink:0;
-    border-radius:6px;
-    display:flex; align-items:center; justify-content:center;
-    background:rgba(139,92,246,0.12);
-    border:1px solid rgba(139,92,246,0.3);
-    color:var(--violet-light);
-    font-size:10.5px;
-  }
-  .review-foot-name{
-    flex:1;
-    min-width:0;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    color:var(--white);
-    font-weight:500;
-  }
-  .review-foot-date{flex-shrink:0; color:var(--grey);}
-
-  /* ============ STATUS ============ */
-  .status-section{margin-top:130px; max-width:760px; margin-left:auto; margin-right:auto;}
-  .status-header{text-align:center; margin-bottom:40px;}
-  .status-header .badge{margin-bottom:18px;}
-  .status-header h2{
-    font-family:'Outfit', sans-serif;
-    font-size:34px;
-    font-weight:800;
-    margin-bottom:12px;
-    letter-spacing:-0.4px;
-  
-    color:var(--white);
-  }
-  .status-header p{color:var(--grey); font-size:15.5px;}
-
-  .status-banner{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:18px;
-    margin-bottom:26px;
-    font-weight:600;
-    font-size:15px;
-  }
-  .status-banner-dot{
-    width:9px; height:9px;
-    border-radius:50%;
-    background:var(--violet-light);
-    box-shadow:0 0 10px var(--violet-light), 0 0 20px rgba(139,92,246,0.6);
-  }
-
-  .status-list{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:14px;
-    overflow:hidden;
-  }
-  .status-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    padding:20px 24px;
-    border-bottom:1px solid var(--line);
-    transition:background .2s ease;
-  }
-  .status-row:last-child{border-bottom:none;}
-  .status-row:hover{background:rgba(139,92,246,0.05);}
-  .status-row-name{font-weight:600; font-size:15px;}
-  .status-row-sub{color:var(--grey); font-size:13px; margin-top:3px;}
-
-  .status-pill{
-    flex-shrink:0;
-    display:inline-block;
-    padding:6px 14px;
-    border-radius:20px;
-    font-size:12.5px;
-    font-weight:600;
-    color:var(--violet-light);
-    background:rgba(139,92,246,0.12);
-    border:1px solid rgba(139,92,246,0.4);
-    text-shadow:0 0 10px rgba(139,92,246,0.5);
-  }
-
-  @media (max-width:820px){
-    .grid{grid-template-columns:1fr;}
-    .why-grid{grid-template-columns:1fr;}
-    nav{padding:18px 24px;}
-    .nav-links{display:none;}
+  @media (max-width:900px){
+    nav{padding:18px 24px;} .nav-links{display:none;}
+    main{padding:40px 24px 80px;}
+    .product-top{grid-template-columns:1fr; gap:32px;}
+    .gallery-main{height:340px;}
+    .features{grid-template-columns:1fr 1fr;}
   }
 
   /* ============ CURSEUR PERSONNALISE ============ */
@@ -639,7 +374,7 @@
     box-shadow:0 0 34px rgba(139,92,246,0.5);
   }
 
-  /* trainee d'etincelles, dans le langage visuel des particules de l'orbe */
+  /* trainee d'etincelles, dans le langage visuel du reste du site */
   .cursor-spark{
     position:fixed;
     top:0; left:0;
@@ -690,8 +425,8 @@
   <ul class="nav-links">
     <li><a href="index.html" data-cursor="Home">Home</a></li>
     <li><a href="product.html" class="active" data-cursor="Products">Products</a></li>
-    <li><a href="#status" data-cursor="Status">Status</a></li>
-    <li><a href="#reviews" data-cursor="Reviews">Reviews</a></li>
+    <li><a href="product.html#status" data-cursor="Status">Status</a></li>
+    <li><a href="product.html#reviews" data-cursor="Reviews">Reviews</a></li>
   </ul>
   <a class="discord-btn" href="https://discord.gg/ghostapex" target="_blank" rel="noopener" data-cursor="Join">
     <svg class="discord-icon-face" viewBox="0 0 245 240" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -703,637 +438,103 @@
 </nav>
 
 <main>
-  <div class="store-header">
-    <span class="badge">SHOWCASE</span>
-    <h1>Our <span class="grad">products</span></h1>
-    <p>Explore our tools and configurations, built with precision and made to perform. </p>
+  <a href="product.html" class="back-link" data-cursor="Back">← Back to products</a>
+
+  <div class="product-top">
+    <div class="gallery-main">
+      <img src="images/products-bg.png" alt="Ghost Jitter" style="object-position:68% 25%;">
+    </div>
+
+    <div class="product-info">
+      <div class="tags">
+        <span class="tag"><span class="dot"></span>Instant delivery</span>
+      </div>
+      <h1>Ghost Jitter</h1>
+      <p class="desc">
+        My personal controller setup — tuned look and response curves, calibrated
+        deadzones, and a layout built for smoother, more consistent tracking on pad.
+      </p>
+
+      <div class="platforms-box">
+        <span class="label"><span class="label-check">✓</span>Supported platforms</span>
+        <span class="icons">
+          <img class="platform-icon" src="images/steam-mono.png" alt="Steam">
+          <img class="platform-icon" src="images/ea-mono.png" alt="EA">
+        </span>
+      </div>
+
+      <div class="pricing">
+        <!-- data-variant-id : mets ici l'ID de la variante SellAuth "1 Month" -->
+        <div class="price-card selected" data-variant-id="REPLACE_WITH_1MONTH_VARIANT_ID">
+          <div class="duration">1 Month</div>
+          <div class="amount">€15</div>
+        </div>
+        <!-- data-variant-id : mets ici l'ID de la variante SellAuth "Lifetime" -->
+        <div class="price-card" data-variant-id="REPLACE_WITH_LIFETIME_VARIANT_ID">
+          <div class="duration">Lifetime</div>
+          <div class="amount">€25</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="https://ghostapex.mysellauth.com/product/no-recoil-app"
+           id="buyNowBtn"
+           class="btn btn-primary"
+           target="_blank" rel="noopener"
+           data-cursor="Buy">Buy now</a>
+      </div>
+    </div>
   </div>
 
-  <div class="grid">
-
-    <a class="card" href="product-mnk.html">
-      <span class="badge-best">FEATURED</span>
-      <div class="card-art">
-        <img src="images/tuff.png" alt="Mouse & Keyboard Config">
-      </div>
-      <div class="card-body">
-        <h3>Mouse and Keyboard Config</h3>
-        <p>Pro-level movement & precision with advanced tap-strafe mechanics.</p>
-        <div class="price">From 20€</div>
-        <span class="btn-details">View details</span>
-      </div>
-    </a>
-
-    <a class="card" href="ghostjitter.html">
-      <div class="card-art">
-        <img src="images/products-bg.png" alt="Ghost Jitter" class="card-art-jitter">
-      </div>
-      <div class="card-body">
-        <h3>No-Recoil App</h3>
-        <p>Advanced recoil control for smoother aim & effortless precision.</p>
-        <div class="price">From 15€</div>
-        <span class="btn-details">View details</span>
-      </div>
-    </a>
-
+  <div class="features">
+    <div class="feature-card">
+      <h4><span class="icon-dot">◆</span>Response curve</h4>
+      <ul>
+        <li>Look sensitivity curve</li>
+        <li>Deadzone calibration</li>
+        <li>Scoped response ratios</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <h4><span class="icon-dot">◆</span>Button mapping</h4>
+      <ul>
+        <li>Full button layout</li>
+        <li>Movement-friendly mapping</li>
+        <li>Fully customizable</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <h4><span class="icon-dot">◆</span>Setup guide</h4>
+      <ul>
+        <li>Step-by-step walkthrough</li>
+        <li>Video reference included</li>
+        <li>Works out of the box</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <h4><span class="icon-dot">◆</span>Support</h4>
+      <ul>
+        <li>Lifetime free updates</li>
+        <li>Discord support</li>
+        <li>License key included</li>
+      </ul>
+    </div>
   </div>
-
-  <section class="why-section" id="why">
-    <div class="why-header">
-      <h2>Why <span class="grad">choose us</span> ?</h2>
-      <p>No tricks, no fees, just honest quality.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon">🎧</div>
-        <h3>24/7 Support</h3>
-        <p>Looking for help? I'm available on Discord whenever you need support.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">$</div>
-        <h3>Fair Pricing</h3>
-        <p>Honest pricing for what's actually delivered, no inflated bundles.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🛡</div>
-        <h3>Secure Payments</h3>
-        <p>Checkout runs through SellAuth with real buyer protection, not a sketchy DM transfer.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">☺</div>
-        <h3>Straight Answers</h3>
-        <p>Questions before buying? I'll tell you plainly what a config does and doesn't do.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="reviews-section" id="reviews">
-    <div class="reviews-header">
-      <span class="badge">COMMUNITY</span>
-      <h2>39 <span class="grad">five-star reviews</span></h2>
-      <p>A few reactions from people who've checked out the site and the setups.</p>
-    </div>
-    <div class="reviews-cta">
-      <div class="reviews-cta-text">
-        <strong>Tried a config or just like the site?</strong>
-        <span>Leave a review on Discord — it helps a lot.</span>
-      </div>
-      <a class="discord-btn" href="https://discord.gg/ghostapex" target="_blank" rel="noopener" data-cursor="Join">
-        Leave a review
-      </a>
-    </div>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Aug 17, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Aug 16, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Aug 15, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Aug 15, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Aug 13, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Aug 12, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Aug 9, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Aug 6, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Aug 3, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Aug 2, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jul 30, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jul 29, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jul 28, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jul 27, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jul 25, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jul 21, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jul 19, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jul 19, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jul 18, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jul 12, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jul 6, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jul 1, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jul 1, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jun 26, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jun 25, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 25, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 24, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 23, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 22, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 20, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 18, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 17, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 15, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jun 14, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jun 13, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 11, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jun 9, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Mouse and Keyboard Config</span>
-          <span class="review-foot-date">Jun 8, 2026</span>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-top">
-          <div class="stars"><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span></div>
-          <div class="review-quote">&rdquo;</div>
-        </div>
-        <p class="review-text">Automatic feedback after 7 days.</p>
-        <div class="review-foot">
-          <span class="review-foot-icon">&#9642;</span>
-          <span class="review-foot-name">Ghost Jitter</span>
-          <span class="review-foot-date">Jun 4, 2026</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="status-section" id="status">
-    <div class="status-header">
-      <span class="badge">MONITORING</span>
-      <h2>Service <span class="grad">Status</span></h2>
-      <p>Current status of the things I maintain on this site.</p>
-    </div>
-
-    <div class="status-banner">
-      <span class="status-banner-dot"></span>
-      <span>All systems operational</span>
-    </div>
-
-    <div class="status-list">
-      <div class="status-row">
-        <div class="status-row-info">
-          <div class="status-row-name">Mouse and Keyboard Config</div>
-          <div class="status-row-sub">Sensitivity &amp; keybind setup</div>
-        </div>
-        <span class="status-pill">Operational</span>
-      </div>
-      <div class="status-row">
-        <div class="status-row-info">
-          <div class="status-row-name">Ghost Jitter</div>
-          <div class="status-row-sub">Controller settings</div>
-        </div>
-        <span class="status-pill">Operational</span>
-      </div>
-      <div class="status-row">
-        <div class="status-row-info">
-          <div class="status-row-name">Discord server</div>
-          <div class="status-row-sub">discord.gg/ghostapex</div>
-        </div>
-        <span class="status-pill">Operational</span>
-      </div>
-    </div>
-  </section>
 </main>
 
 <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
 <script>
+  // Selection du plan tarifaire (1 Month / Lifetime) - independant du curseur,
+  // doit fonctionner partout (souris, tactile, reduced motion).
+  document.querySelectorAll('.price-card').forEach(function(el){
+    el.addEventListener('click', function(){
+      el.parentElement.querySelectorAll('.price-card').forEach(function(c){ c.classList.remove('selected'); });
+      el.classList.add('selected');
+    });
+  });
+
   // Curseur personnalise : uniquement pour souris fine, et jamais si l'utilisateur
   // demande moins de mouvement. Sans ces conditions, le curseur systeme reste tel quel.
   (function(){
@@ -1376,8 +577,8 @@
     }
     requestAnimationFrame(raf);
 
-    // simple grossissement au survol des cartes (zone large, pas d'accroche precise)
-    document.querySelectorAll('.card, .status-row, .review-card, .why-card').forEach(function(el){
+    // simple grossissement au survol des grandes surfaces (zone large, pas d'accroche precise)
+    document.querySelectorAll('.feature-card, .price-card').forEach(function(el){
       el.addEventListener('mouseenter', function(){ ring.classList.add('is-grow'); });
       el.addEventListener('mouseleave', function(){ ring.classList.remove('is-grow'); });
     });
